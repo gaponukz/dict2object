@@ -1,7 +1,7 @@
 from typing import *
 import json
 
-class Object(object):
+class Object(dict):
     def __init__(self, __data: Dict[str, Any] | str = None, **kwargs):
         if not __data and kwargs:
             __data = kwargs
