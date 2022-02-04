@@ -22,8 +22,8 @@ Dictionary Methods
 A dict2object is a subclass of ``dict``; it supports all the methods a ``dict`` does:
 
 ````py
->>> b.keys()
-['foo', 'hello']
+>>> user.keys()
+['name', 'age', 'job']
 ````
 
 Serialization
