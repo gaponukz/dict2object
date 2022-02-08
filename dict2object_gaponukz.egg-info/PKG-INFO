@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: dict2object-gaponukz
+Version: 0.0.1
+Summary: Convert dict to (js)object
+Home-page: https://github.com/gaponukz/dict2object
+Author: Eugene Gaponyuk
+Author-email: gaponukz54@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+dict2object
+====
+
+dict2object is a dictionary that supports attribute-style access, a la JavaScript.
+```py
+>>> user = Object({
+...     "name": "John",
+...     "age": 18,
+...     "job": {
+...         "name": "programmer",
+...         "experience": 5
+...     }
+... })
+>>> user.name
+'Jhon'
+>>> user.job.name
+'programmer'
+```
+Dictionary Methods
+------------------
+
+A dict2object is a subclass of ``dict``; it supports all the methods a ``dict`` does:
+
+````py
+>>> user.keys()
+['name', 'age', 'job']
+````
+
+Serialization
+-------------
+
+Bunches happily and transparently serialize from JSON.
+
+````py
+>>> user = Object.load('{"name": "Anna", "age": 20}')
+>>> user.name
+'Anna'
+````
+
+

@@ -1,0 +1,9 @@
+LICENSE
+README.md
+setup.py
+dict2object/__init__.py
+dict2object/dict2object.py
+dict2object_gaponukz.egg-info/PKG-INFO
+dict2object_gaponukz.egg-info/SOURCES.txt
+dict2object_gaponukz.egg-info/dependency_links.txt
+dict2object_gaponukz.egg-info/top_level.txt
