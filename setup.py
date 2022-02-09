@@ -5,7 +5,7 @@ with open("README.md", "r") as out:
 
 setuptools.setup(
 	name="dict2object-gaponukz",
-	version="0.0.1",
+	version="0.0.2",
 	author="Eugene Gaponyuk",
 	author_email="gaponukz54@gmail.com",
 	description="Convert dict to (js)object",
