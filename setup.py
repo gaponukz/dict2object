@@ -1,11 +1,12 @@
 import setuptools
+from distutils.core import setup, Extension
 
 with open("README.md", "r") as out:
 	long_description = out.read()
 
 setuptools.setup(
 	name="dict2object-gaponukz",
-	version="0.0.2",
+	version="0.0.4",
 	author="Eugene Gaponyuk",
 	author_email="gaponukz54@gmail.com",
 	description="Convert dict to (js)object",
