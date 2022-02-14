@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Callable
 import json
 
 class Object(dict):
@@ -18,6 +18,18 @@ class Object(dict):
                 
                 else:
                     setattr(self, item, __data[item])
+    
+    @property
+    def length(self):
+        return len(self.__data)
+    
+    def filter(self, function: Callable):
+        for key in list(self.__data):
+            if not function(self.__data[key]):
+                del self.__data[key]
+                delattr(self, key)
+        
+        return self
 
     def keys(self) -> list:
         return self.__data.keys()
@@ -60,6 +72,9 @@ class Object(dict):
     def __getitem__(self, __name: str) -> Any:
         try: return Object(getattr(self, __name))
         except AttributeError: return
+    
+    def __getattr__(self, __name: str):
+        return Object(self.__data.get(__name))
 
     def __setattr__(self, __key: str, __value: Any) -> None:
         if __key != '_Object__data':
