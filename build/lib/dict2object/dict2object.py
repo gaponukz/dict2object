@@ -2,11 +2,11 @@ from typing import Any
 import json
 
 class Object(dict):
-    def __init__(self, __data: dict | Any = None, **kwargs):
+    def __init__(self, __data: Any = None, **kwargs):
         if not __data and kwargs:
             __data = kwargs
         
-        if not __data:
+        if __data == None:
             __data = {}
         
         self.__data = __data
@@ -31,9 +31,6 @@ class Object(dict):
     def has_key(self, __key: Any) -> bool:
         return __key in self.__data
 
-    def update(self, *args: list, **kwargs: dict) -> 'Object':
-        return Object(self.__data.update(*args, **kwargs))
-
     def values(self) -> list:
         return self.__data.values()
 
@@ -49,6 +46,10 @@ class Object(dict):
     @staticmethod
     def load(data: str):
         return Object(json.loads(data))
+
+    @staticmethod
+    def fromkeys(keys: list, value: Any):
+        return Object({}.fromkeys(keys, value))
 
     def __eq__(self, __item) -> bool:
         if isinstance(__item, Object):
@@ -73,6 +74,9 @@ class Object(dict):
     def __str__(self):
         return str(self.__data)
     
+    def __list__(self):
+        return list(self.__data)
+    
     def __del__(self):
         del self.__data
     
@@ -95,3 +99,32 @@ class Object(dict):
 
     def __len__(self):
         return len(self.__data)
+    
+    def __add__(self, other):
+        if isinstance(other, Object):
+            other = other.to_dict()
+        
+        result = self.__data.copy()
+        result.update(other)
+        
+        return Object(result)
+    
+    def __iadd__(self, other):
+        if isinstance(other, Object):
+            other = other.to_dict()
+        
+        for key in other:
+            self.__data[key] = other[key]
+            setattr(self, key, Object(other[key]))
+        
+        return self
+    
+    def __nonzero__(self):
+        return bool(self.__data)
+    
+    def __contains__(self, key):
+        return key in self.__data
+    
+    def __iter__(self):
+        for item in self.__data:
+            yield item
